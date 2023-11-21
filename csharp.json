@@ -1,0 +1,117 @@
+{
+	// Place your snippets for csharp here. Each snippet is defined under a snippet name and has a prefix, body and 
+	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
+	// same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+	  "MVCController": {
+		"prefix": "controller",
+		"body": [
+		"using Zenject;",
+		"",
+		"public interface I${1:Controller}Controller",
+		"{",
+		"    void Enable();",
+		"    void Disable();",
+		"    void Initialize();",
+		"    void Tick();",
+		"    void Dispose();",
+		"}",
+		"",
+		"public class ${1:Controller}Controller : I${1:Controller}Controller",
+		"{",
+		"    private readonly I${1:Model}Model model;",
+		"    private readonly I${1:View}View view;",
+		"",
+		"    [Inject]",
+		"    public ${1:Controller}Controller(I${1:Model}Model model, I${1:View}View view) => (this.model, this.view) = (model, view);",
+		"",
+		"    public void Initialize()",
+		"    {",
+		"        model.Initialize();",
+		"        view.Initialize(model);",
+		"    }",
+		"",
+		"    public void Enable() => view.Enable();",
+		"",
+		"    public void Disable() => view.Disable();",
+		"",
+		"    public void Tick()",
+		"    {",
+		"        // Implement the logic for the Tick method",
+		"    }",
+		"",
+		"    public void Dispose()",
+		"    {",
+		"        // Implement the logic for the Dispose method",
+		"    }",
+		"}"
+		],
+		"description": "Zenject Controller template"
+		},
+		"MVCView": {
+		"prefix": "view",
+		"body": [
+			"using UnityEngine;",
+			"",
+			"public interface I${1:View}View",
+			"{",
+			"    void Initialize(I${1:Model}Model model);",
+			"    void Enable();",
+			"    void Disable();",
+			"}",
+			"",
+			"public class ${1:View}View : MonoBehaviour, I${1:View}View",
+			"{",
+			"    private I${1:Model}Model model;",
+			"",
+			"    public void Initialize(I${1:Model}Model model)",
+			"    {",
+			"        this.model = model;",
+			"        // Implement initialization logic here",
+			"    }",
+			"",
+			"    public void Enable()",
+			"    {",
+			"        gameObject.SetActive(true);",
+			"        // Implement additional enable logic if needed",
+			"    }",
+			"",
+			"    public void Disable()",
+			"    {",
+			"        gameObject.SetActive(false);",
+			"        // Implement additional disable logic if needed",
+			"    }",
+			"}"
+		],
+		"description": "Zenject View template"
+		},
+		"MVCModel": {
+			"prefix": "model",
+			"body": [
+			  "public interface I${1:Model}Model",
+			  "{",
+			  "    void Initialize();",
+			  "    // Add any additional methods or properties relevant to the model",
+			  "}",
+			  "",
+			  "public class ${1:Model}Model : I${1:Model}Model",
+			  "{",
+			  "    public void Initialize()",
+			  "    {",
+			  "        // Implement initialization logic for the model",
+			  "    }",
+			  "}"
+			],
+			"description": "Zenject Model template"
+		  }
+}
+
