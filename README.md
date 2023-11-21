@@ -1,5 +1,5 @@
 # vs-code-templates-for-dotnet-mvc
-VSCode user snippets for MVC style class
+VSCode user snippets for MVC style class using Zenject DI 
 
 ## Setup
 - Open VS Code.
